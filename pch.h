@@ -1,17 +1,17 @@
 #pragma once
 
 #include "../game/Tools/Language.h"
-#include "../shared/Log/Log.h"
-#include "../game/WorldHandlers/World.h"
-#include "../game/Object/ObjectMgr.h"
-#include "../game/Server/WorldSession.h"
-#include "../shared/Config/Config.h"
-#include "../shared/Utilities/Util.h"
-#include "../game/WorldHandlers/AccountMgr.h"
-#include "../game/WorldHandlers/MapManager.h"
-#include "../game/Object/Player.h"
-#include "../game/WorldHandlers/Chat.h"
-#include "../shared/Database/DatabaseEnv.h"
+#include "Log.h"
+#include "World.h"
+#include "ObjectMgr.h"
+#include "WorldSession.h"
+#include "Config.h"
+#include "Util.h"
+#include "AccountMgr.h"
+#include "MapManager.h"
+#include "Player.h"
+#include "Chat.h"
+#include "DatabaseEnv.h"
 #include <openssl/opensslv.h>
 #include <openssl/crypto.h>
 
