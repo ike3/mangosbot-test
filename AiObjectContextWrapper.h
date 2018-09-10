@@ -168,6 +168,7 @@ namespace ai
             creators["spell cast useful"] = &MockValueContext::always_true;
             creators["can loot"] = &MockValueContext::logical;
             creators["invalid target"] = &MockValueContext::logical;
+            creators["collision"] = &MockValueContext::logical;
 
             creators["possible targets"] = &MockValueContext::units;
             creators["nearest adds"] = &MockValueContext::units;

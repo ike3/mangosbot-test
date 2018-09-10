@@ -23,6 +23,7 @@ class NonCombatEngineTestCase : public EngineTestBase
       CPPUNIT_TEST( out_of_react );
       CPPUNIT_TEST( tell_target );
       CPPUNIT_TEST( pvp );
+      CPPUNIT_TEST( collision );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -209,7 +210,7 @@ protected:
         set<bool>("combat", "self target", false);
         tickWithNoTarget();
 
-        assertActions(">S:stay>S:check mount state>S:stay>Grind:attack anything>Grind:attack anything>S:stay");
+        assertActions(">S:stay>S:check mount state>S:check values>Grind:attack anything>Grind:attack anything>S:stay");
     }
 
     void grindIfNoMana()
@@ -224,6 +225,15 @@ protected:
         tickWithNoTarget();
 
         assertActions(">S:stay>Grind:attack anything");
+    }
+
+    void collision()
+    {
+        engine->addStrategy("collision");
+
+        tickWithCollision();
+
+        assertActions(">S:move out of collision");
     }
 };
 

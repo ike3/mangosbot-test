@@ -511,6 +511,13 @@ void EngineTestBase::tickWithSnareTargetSpell(string spell)
     set<Unit*>("snare target", spell, NULL);
 }
 
+void EngineTestBase::tickWithCollision()
+{
+    set<bool>("collision", "self target", true);
+    tick();
+    set<bool>("collision", "self target", false);
+}
+
 void EngineTestBase::runStressTest()
 {
     int count = 20;

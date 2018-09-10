@@ -84,6 +84,7 @@ protected:
     void tickWithItemForSpell(string spell);
     void tickWithEnemyHealerIsCastingInterruptableSpell(string interrupt);
     void tickWithSnareTargetSpell(string interrupt);
+    void tickWithCollision();
     void runStressTest();
 
 protected:
