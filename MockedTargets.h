@@ -24,6 +24,7 @@ namespace ai
 		static Unit* GetAttackerWithoutAura() { return (Unit*)21; }
 		static Unit* GetEnemyHealer() { return (Unit*)22; }
 		static Unit* GetSnareTarget() { return (Unit*)23; }
+		static Unit* GetRpgTarget() { return (Unit*)24; }
 
         static void Append(string &buffer, Unit* unit)
         {
@@ -59,6 +60,8 @@ namespace ai
                 buffer.append("H");
             if (unit == GetSnareTarget())
                 buffer.append("Sn");
+            if (unit == GetRpgTarget())
+                buffer.append("Rpg");
         }
    };
 
