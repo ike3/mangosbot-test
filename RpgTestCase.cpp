@@ -26,6 +26,10 @@ public:
 protected:
     void rpg()
     {
+        list<ObjectGuid> rpgTargets;
+        rpgTargets.push_back(ObjectGuid(HIGHGUID_PLAYER, uint32(1)));
+        set<list<ObjectGuid> >("possible rpg targets", rpgTargets);
+
         set<Unit*>("rpg target", NULL);
 		tick();
         set<Unit*>("rpg target", MockedTargets::GetRpgTarget());
