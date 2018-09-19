@@ -3,6 +3,7 @@
 
 #include "EngineTestBase.h"
 #include "../../modules/Bots/playerbot/strategy/druid/DruidAiObjectContext.h"
+#include "../modules/Bots/playerbot/strategy/values/PositionValue.h"
 
 using namespace ai;
 
@@ -96,6 +97,10 @@ protected:
 	    engine->removeStrategy("bear");
 	    engine->addStrategy("guard");
 
+	    ai::PositionMap& posMap = context->GetValue<ai::PositionMap&>("position")->Get();
+	    ai::Position randomPosition; randomPosition.Set(1, 1, 1);
+	    posMap["guard"] = randomPosition;
+	    set<float>("distance", "position_guard", 10);
 	    tick();
 
 		assertActions(">S:move to position");

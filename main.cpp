@@ -74,6 +74,9 @@ int main(int argc, char* argv[])
     sPlayerbotAIConfig.iterationsPerTick = 10;
     sPlayerbotAIConfig.randomChangeMultiplier = 1;
     sPlayerbotAIConfig.targetPosRecalcDistance = 0.5f;
+    sPlayerbotAIConfig.sitDelay = 10000;
+    sPlayerbotAIConfig.returnDelay = 10000;
+    sPlayerbotAIConfig.logValuesPerTick = true;
 
     // Create the event manager and test controller
     CPPUNIT_NS::TestResult controller;

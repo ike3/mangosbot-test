@@ -8,7 +8,7 @@ using namespace ai;
 class MockTrigger : public Trigger
 {
 public:
-    MockTrigger(PlayerbotAI* const ai) : Trigger(ai)
+    MockTrigger(PlayerbotAI* const ai, string name) : Trigger(ai, name)
     {
     }
 
@@ -95,7 +95,7 @@ Trigger* MockAiObjectContext::GetTrigger(string  name)
     if (trigger)
         return trigger;
 
-    return triggers[name] = new MockTrigger(ai);
+    return triggers[name] = new MockTrigger(ai, name);
 }
 
 Action* MockAiObjectContext::GetAction(string  name)

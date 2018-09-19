@@ -30,10 +30,13 @@ protected:
     {
         engine->addStrategy("emote");
         tickWithTrigger("random");
-        tickWithTrigger("seldom");
-        tickWithTrigger("seldom");
 
-        assertActions(">S:emote>S:suggest what to do>S:suggest trade");
+        tickWithTrigger("seldom");
+        tick();
+
+        tickWithTrigger("often");
+
+        assertActions(">S:emote>S:suggest what to do>S:suggest trade>S:talk");
     }
 
     void suggest()

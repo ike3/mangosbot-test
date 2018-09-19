@@ -5,7 +5,7 @@ using namespace ai;
 
 class MockedAiObjectContextTestCase : public EngineTestBase
 {
-  
+
 protected:
     MockAiObjectContext* context;
 
@@ -50,5 +50,6 @@ protected:
     {
         trigger(name);
         tick();
+        context->GetTrigger(name)->Reset();
     }
 };
