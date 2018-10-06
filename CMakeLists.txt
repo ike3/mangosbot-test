@@ -94,6 +94,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/test/cppunit
     ${CMAKE_SOURCE_DIR}/src/modules/Bots/playerbot
     ${CMAKE_SOURCE_DIR}/src/modules/Bots/ahbot
+    ${Boost_INCLUDE_DIRS}
 )
 
 # Define ENABLE_PLAYERBOTS if need
@@ -127,6 +128,7 @@ target_link_libraries(tests
   g3dlite
   ${OPENSSL_LIBRARIES}
   ${MYSQL_LIBRARY}
+  ${Boost_LIBRARIES}
 )
 
 add_dependencies(tests game)
