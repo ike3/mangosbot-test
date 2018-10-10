@@ -171,6 +171,7 @@ namespace ai
             creators["collision"] = &MockValueContext::logical;
 
             creators["possible targets"] = &MockValueContext::units;
+            creators["possible rpg targets"] = &MockValueContext::units;
             creators["all targets"] = &MockValueContext::units;
             creators["nearest adds"] = &MockValueContext::units;
             creators["attackers"] = &MockValueContext::units;
