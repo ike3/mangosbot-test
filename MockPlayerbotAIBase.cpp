@@ -20,7 +20,7 @@ void MockPlayerbotAIBase::RemoveAura(string name)
     }
 }
 
-bool MockPlayerbotAIBase::CanCastSpell(string name, Unit* target)
+bool MockPlayerbotAIBase::CanCastSpell(string name, Unit* target, Item* itemTarget)
 {
     for (list<string >::iterator i = spellCooldowns.begin(); i != spellCooldowns.end(); i++)
     {
@@ -36,7 +36,7 @@ bool MockPlayerbotAIBase::IsSpellCastUseful(string name, Unit* target)
     return true;
 }
 
-bool MockPlayerbotAIBase::CastSpell(string name, Unit* target)
+bool MockPlayerbotAIBase::CastSpell(string name, Unit* target, Item* itemTarget)
 {
     buffer.append(">");
     if (target == MockedTargets::GetPartyMember())

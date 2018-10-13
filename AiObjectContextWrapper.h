@@ -9,6 +9,12 @@ namespace ai
         MockTargetValue(PlayerbotAI* const ai) : ManualSetValue<Unit*>(ai, NULL) {}
     };
 
+    class MockGuidTargetValue : public ManualSetValue<ObjectGuid>, public Qualified
+    {
+    public:
+        MockGuidTargetValue(PlayerbotAI* const ai) : ManualSetValue<ObjectGuid>(ai, ObjectGuid()) {}
+    };
+
     class MockStatsValue : public ManualSetValue<uint8>, public Qualified
     {
     public:
@@ -201,6 +207,7 @@ namespace ai
         static UntypedValue* str(PlayerbotAI* ai) { return new MockStringValue(ai); }
         static UntypedValue* logical(PlayerbotAI* ai) { return new MockLogicalValue(ai); }
         static UntypedValue* mock(PlayerbotAI* ai) { return new MockTargetValue(ai); }
+        static UntypedValue* mock_guid(PlayerbotAI* ai) { return new MockGuidTargetValue(ai); }
         static UntypedValue* party_member_without_aura(PlayerbotAI* ai) { return new MockPartyMemberWithoutAuraValue(ai); }
         static UntypedValue* party_member_to_heal(PlayerbotAI* ai) { return new MockPartyMemberToHeal(ai); }
         static UntypedValue* party_member_to_dispel(PlayerbotAI* ai) { return new MockPartyMemberToDispel(ai); }

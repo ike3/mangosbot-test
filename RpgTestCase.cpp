@@ -30,9 +30,9 @@ protected:
         rpgTargets.push_back(ObjectGuid(HIGHGUID_PLAYER, uint32(1)));
         set<list<ObjectGuid> >("possible rpg targets", rpgTargets);
 
-        set<Unit*>("rpg target", NULL);
+        set<ObjectGuid>("rpg target", ObjectGuid());
 		tick();
-        set<Unit*>("rpg target", MockedTargets::GetRpgTarget());
+        set<ObjectGuid>("rpg target", ObjectGuid(HIGHGUID_PLAYER, uint32(1)));
 
         set<float>("distance", "rpg target", 70.0f);
         tick();

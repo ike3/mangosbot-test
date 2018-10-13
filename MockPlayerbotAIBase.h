@@ -7,17 +7,17 @@ namespace ai
 	class MockPlayerbotAIBase : public PlayerbotAI
 	{
 	public:
-		MockPlayerbotAIBase() : PlayerbotAI() 
+		MockPlayerbotAIBase() : PlayerbotAI()
         {
             targetIsCastingNonMeleeSpell = false;
         }
         void SetContext(AiObjectContext* context) { this->aiObjectContext = context; }
-	
+
         virtual uint32 GetSpellId(string args) { return 1; }
         virtual void InterruptSpell();
         virtual void RemoveAura(string name);
-        virtual bool CanCastSpell(string name, Unit* target);
-        virtual bool CastSpell(string name, Unit* target);
+        virtual bool CanCastSpell(string name, Unit* target, Item* itemTarget = NULL);
+        virtual bool CastSpell(string name, Unit* target, Item* itemTarget = NULL);
         virtual bool HasAura(string spellName, Unit* player);
         virtual bool IsInterruptableSpellCasting(Unit* player, string spell);
         virtual bool HasAuraToDispel(Unit* player, uint32 dispelType);
