@@ -12,7 +12,6 @@ class FrostMageTestCase : public EngineTestBase
   CPPUNIT_TEST( combatVsMelee );
   CPPUNIT_TEST( dispel );
   CPPUNIT_TEST( boost );
-  CPPUNIT_TEST( interruptSpells );
   CPPUNIT_TEST( cc );
   CPPUNIT_TEST( aoe );
   CPPUNIT_TEST( incompatibles );
@@ -82,15 +81,6 @@ protected:
         tick(); // shoot
 
 		assertActions(">T:frostbolt>S:icy veins>T:frostbolt>T:shoot");
-    }
-
-    void interruptSpells()
-    {
-		tickWithTargetIsCastingNonMeleeSpell();
-
-        tick(); // frostbolt
-
-        assertActions(">T:counterspell>T:frostbolt");
     }
 
     void cc()

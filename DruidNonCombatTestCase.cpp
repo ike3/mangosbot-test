@@ -27,9 +27,9 @@ protected:
     {
 		tick();
 		addAura("mark of the wild");
-                
+
 		tickWithSpellAvailable("mark of the wild");
-        
+
 		assertActions(">S:mark of the wild>P:mark of the wild on party");
     }
 
@@ -47,10 +47,7 @@ protected:
         tickWithLowMana(5);
         tickWithLowMana(5);
 
-        set<uint8>("item count", "drink", 0);
-        tickWithLowMana(5);
-
-        assertActions(">S:innervate>S:drink>S:flee");
+        assertActions(">S:innervate>S:drink");
     }
 
     void dispel()

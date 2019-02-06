@@ -72,15 +72,11 @@ protected:
         spellUnavailable("healing touch");
         spellUnavailable("rejuvenation");
 
-	    tickWithLowMana(1);
-
 	    set<bool>("combat", "self target", true);
 	    tickWithLowMana(1);
         set<uint8>("item count", "mana potion", 0);
 	    tickWithLowMana(1);
         set<uint8>("item count", "drink", 0);
-        set<float>("distance", "current target", 5);
-	    tickWithLowMana(1);
 
 	    tickWithLowHealth(1);
         set<uint8>("item count", "healing potion", 0);
@@ -89,7 +85,7 @@ protected:
         set<float>("distance", "current target", 5);
 	    tickWithLowHealth(1);
 
-		assertActions(">S:flee>S:mana potion>S:drink>S:flee>S:healing potion>S:food>S:flee");
+		assertActions(">S:mana potion>S:drink>S:healing potion>S:food>S:flee");
 	}
 
 	void guard()

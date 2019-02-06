@@ -17,6 +17,7 @@ class DpsWarriorTestCase : public EngineTestBase
 	CPPUNIT_TEST( victoryRush );
 	CPPUNIT_TEST( aoe );
 	CPPUNIT_TEST( stress );
+	CPPUNIT_TEST( reach_target );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -122,6 +123,18 @@ protected:
         tickInMeleeRange();
 
         assertActions(">S:battle stance>T:cleave>T:thunder clap>T:demoralizing shout>A:rend on attacker>T:bloodthirst");
+    }
+
+    void reach_target()
+    {
+        spellUnavailable("charge");
+        spellUnavailable("battle shout");
+        spellUnavailable("bloodrage");
+        removeAura("battle shout");
+        set<uint8>("rage", "self target", 0);
+        tickInSpellRange();
+
+        assertActions(">T:reach melee");
     }
 
     void stress()
