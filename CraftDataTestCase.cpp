@@ -55,7 +55,7 @@ protected:
         data.AddObtained(3, 3);
         CPPUNIT_ASSERT(data.IsFulfilled());
 
-        data.Crafted();
+        data.Crafted(1);
         CPPUNIT_ASSERT(!data.IsFulfilled());
 	}
 };
