@@ -78,6 +78,8 @@ class ChatCommandTestCase : public MockedAiObjectContextTestCase
       CPPUNIT_TEST( debug );
       CPPUNIT_TEST( cs );
       CPPUNIT_TEST( wts );
+      CPPUNIT_TEST( hire );
+      CPPUNIT_TEST( craft );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -515,6 +517,16 @@ protected:
     void wts()
     {
         assertParametrizedCommand("wts", "wts");
+    }
+
+    void hire()
+    {
+        assertCommand("wts");
+    }
+
+    void craft()
+    {
+        assertParametrizedCommand("craft", "craft");
     }
 };
 
