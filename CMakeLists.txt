@@ -124,7 +124,6 @@ endif()
 target_link_libraries(tests
   game
   shared
-  framework
   g3dlite
   ${OPENSSL_LIBRARIES}
   ${MYSQL_LIBRARY}

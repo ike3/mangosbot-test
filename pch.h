@@ -30,7 +30,9 @@
 #include <iostream>
 
 #include <list>
+#ifdef CMANGOS
 #include "../framework/Platform/Define.h"
+#endif
 
 #include <stdexcept>
 
