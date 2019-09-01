@@ -76,13 +76,14 @@ protected:
 
         tickWithAoeCount(3);
         tickWithAoeCount(3);
+        tickWithAoeCount(3);
 
 		spellAvailable("cleave");
 		tickWithAoeCount(2);
 		tickWithAoeCount(2);
 		tickWithAoeCount(2);
 
-        assertActions(">T:shockwave>T:thunder clap>T:demoralizing shout>T:cleave>T:devastate");
+        assertActions(">T:battle shout>T:shockwave>T:thunder clap>T:demoralizing shout>T:cleave>T:devastate");
     }
 
     void warriorMustHoldAggro()
