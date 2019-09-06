@@ -107,7 +107,9 @@ protected:
 	    engine->addStrategy("threat");
 
         set<uint8>("threat", "current target", 100);
+        set<bool>("group", true);
 	    tick();
+	    set<bool>("group", false);
 
 		assertActions(">T:reach melee");
 	}

@@ -156,6 +156,7 @@ namespace ai
             creators["pet happy"] = &MockValueContext::logical;
             creators["has mana"] = &MockValueContext::logical;
             creators["combat"] = &MockValueContext::logical;
+            creators["group"] = &MockValueContext::logical;
 
             creators["attacker count"] = &MockValueContext::stats;
             creators["my attacker count"] = &MockValueContext::stats;
