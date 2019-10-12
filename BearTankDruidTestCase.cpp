@@ -77,6 +77,7 @@ protected:
 		tick();
 		tick();
 
+        removeTargetAura("faerie fire (feral)");
 		tickWithSpellAvailable("lacerate");
 		tick();
 		tickWithSpellAvailable("lacerate");

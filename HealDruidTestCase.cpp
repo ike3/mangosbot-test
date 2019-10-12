@@ -13,6 +13,7 @@ class HealDruidTestCase : public EngineTestBase
     CPPUNIT_TEST( healOthers );
 	CPPUNIT_TEST( aoe );
 	CPPUNIT_TEST( range );
+	CPPUNIT_TEST( melee );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -85,6 +86,19 @@ protected:
         tickOutOfSpellRange();
 
         assertActions(">T:reach spell");
+    }
+
+    void melee()
+    {
+        engine->addStrategy("melee");
+        addAura("tree of life");
+
+        tick();
+        tickInMeleeRange();
+        addTargetAura("faerie fire");
+        tickInMeleeRange();
+
+        assertActions(">T:reach melee>T:faerie fire>T:melee");
     }
 };
 
