@@ -75,12 +75,16 @@ protected:
         tickWithAoeCount(4);
 
         set<Unit*>("attacker without aura", "corruption", MockedTargets::GetAttackerWithoutAura());
+        set<Unit*>("attacker without aura", "curse of agony", MockedTargets::GetAttackerWithoutAura());
         tick();
 
+        set<Unit*>("attacker without aura", "curse of agony", NULL);
+        tick();
         set<Unit*>("attacker without aura", "corruption", NULL);
+
         tick();
 
-		assertActions(">T:shadowfury>T:seed of corruption>T:rain of fire>A:corruption on attacker>T:immolate");
+		assertActions(">T:shadowfury>T:seed of corruption>T:rain of fire>A:curse of agony on attacker>A:corruption on attacker>T:immolate");
     }
 
     void cc()
