@@ -10,11 +10,10 @@ class TankWarriorTestCase : public EngineTestBase
 {
     CPPUNIT_TEST_SUITE( TankWarriorTestCase );
     CPPUNIT_TEST( buff );
-    CPPUNIT_TEST( startMeleeCombat );
     CPPUNIT_TEST( melee );
     CPPUNIT_TEST( warriorMustHoldAggro );
     CPPUNIT_TEST( aoe );
-    CPPUNIT_TEST( healing );
+    CPPUNIT_TEST( low_health );
 	CPPUNIT_TEST( snare );
     CPPUNIT_TEST( interruptSpells );
     CPPUNIT_TEST( incompatibles );
@@ -30,6 +29,7 @@ public:
 
         // this buff is combat-only, so skip for most test cases
         addAura("battle shout");
+        addAura("defensive stance");
         set<uint8>("rage", "self target", 20);
         set<float>("distance", "current target", ATTACK_DISTANCE - 1);
     }
@@ -39,98 +39,68 @@ protected:
     {
 		tickWithTargetIsCastingNonMeleeSpell();
 
-        tick(); // rend
-
-        assertActions(">T:shield bash>S:defensive stance");
+        assertActions(">T:shield bash");
     }
 
-    void healing()
+    void low_health()
     {
-        tickWithLowHealth(50); // defensive stance
         tickWithLowHealth(50); // shield wall
         tickWithLowHealth(50); // shield block
 
 		tickWithLowHealth(4);
 		tickWithLowHealth(4);
 
-		assertActions(">S:defensive stance>T:shield wall>S:shield block>S:last stand>T:intimidating shout");
+		assertActions(">T:shield wall>S:shield block>S:last stand>T:intimidating shout");
     }
 
     void buff()
     {
+        removeAura("defensive stance");
+        tick();
+        addAura("defensive stance");
+
         set<uint8>("rage", "self target", 0);
         removeAura("battle shout");
+        tick();
 
-        tickInSpellRange();
+        tick();
         addAura("battle shout");
 
-        tickInSpellRange();
+        tick();
 
-		assertActions(">S:battle shout>S:bloodrage");
-
+		assertActions(">S:defensive stance>S:bloodrage>S:battle shout>S:shield block");
     }
 
     void aoe()
     {
-        addAura("defensive stance");
+        tickWithAoeCount(2);
+        tickWithAoeCount(2);
 
-        tickWithAoeCount(3);
-        tickWithAoeCount(3);
-        tickWithAoeCount(3);
+		spellAvailable("battle shout");
+		tickWithAoeCount(3);
 
-		spellAvailable("cleave");
-		tickWithAoeCount(2);
-		tickWithAoeCount(2);
-		tickWithAoeCount(2);
-
-        assertActions(">T:battle shout>T:shockwave>T:thunder clap>T:demoralizing shout>T:cleave>T:devastate");
+        assertActions(">T:demoralizing shout>T:cleave>T:battle shout");
     }
 
     void warriorMustHoldAggro()
     {
-        addAura("defensive stance");
-
-		tickWithNoAggro();
 		tickWithNoAggro();
 
-		assertActions(">T:taunt>T:mocking blow");
+		assertActions(">T:taunt");
     }
 
-    void startMeleeCombat()
+    void melee()
     {
         tickOutOfMeleeRange();
         tickWithRage(0);
         tickInMeleeRange();
         tick();
         tick();
-        tick();
 
-        assertActions(">T:reach melee>S:bloodrage>S:defensive stance>T:devastate>T:revenge>T:rend");
-    }
-
-    void melee()
-    {
-        addAura("defensive stance");
-        tickInMeleeRange();
-        tick();
-        tick();
-        tick();
-        tick();
-        spellAvailable("rend");
-        addTargetAura("rend");
-
-        tickWithRage(31);
-
-        set<uint8>("rage", "self target", 41);
-        tick();
-
+        tickWithRage(41);
         tickWithSpellAvailable("heroic strike");
 
-        addAura("sword and board");
-		tickWithSpellAvailable("devastate");
-        tickWithSpellAvailable("shield slam");
-
-		assertActions(">T:devastate>T:revenge>T:rend>T:disarm>T:sunder armor>T:melee>T:shield slam>T:heroic strike>T:melee>T:shield slam");
+        assertActions(">T:reach melee>S:bloodrage>S:shield block>T:sunder armor>T:melee>T:shield slam>T:heroic strike");
     }
 
     void revengeIfDodge()
@@ -145,10 +115,9 @@ protected:
 
 	void snare()
 	{
-		tick();
 		tickWithSnareTargetSpell("concussion blow");
 
-		assertActions(">S:defensive stance>Sn:concussion blow on snare target");
+		assertActions(">Sn:concussion blow on snare target");
 	}
 
 

@@ -17,7 +17,6 @@ class DpsWarriorTestCase : public EngineTestBase
 	CPPUNIT_TEST( victoryRush );
 	CPPUNIT_TEST( aoe );
 	CPPUNIT_TEST( stress );
-	CPPUNIT_TEST( reach_target );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -36,16 +35,19 @@ protected:
     {
         removeAura("battle shout");
 
-        tickInSpellRange(); // reach melee
+        tickInMeleeRange(); // reach melee
 		tickInMeleeRange();
+
+        set<uint8>("rage", "self target", 0);
         tick();
 
-		assertActions(">S:battle shout>S:battle stance>T:charge");
+		assertActions(">S:battle stance>S:battle shout>S:bloodrage");
 
     }
 
     void combatVsMelee()
     {
+		tickInSpellRange();
 		tickInSpellRange();
 		tickInSpellRange();
 
@@ -60,10 +62,7 @@ protected:
 
         tick();
 
-        set<uint8>("rage", "self target", 0);
-        tick();
-
-		assertActions(">S:battle stance>T:charge>T:bloodthirst>T:reach melee>T:rend>T:heroic strike>T:melee>S:bloodrage");
+		assertActions(">S:battle stance>T:charge>T:reach melee>T:bloodthirst>T:reach melee>T:rend>T:melee>T:heroic strike");
     }
 
     void boost()
@@ -123,18 +122,6 @@ protected:
         tickInMeleeRange();
 
         assertActions(">S:battle stance>T:cleave>T:thunder clap>T:demoralizing shout>A:rend on attacker>T:bloodthirst");
-    }
-
-    void reach_target()
-    {
-        spellUnavailable("charge");
-        spellUnavailable("battle shout");
-        spellUnavailable("bloodrage");
-        removeAura("battle shout");
-        set<uint8>("rage", "self target", 0);
-        tickInSpellRange();
-
-        assertActions(">T:reach melee");
     }
 
     void stress()
