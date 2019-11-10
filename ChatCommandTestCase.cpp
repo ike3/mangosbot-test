@@ -80,6 +80,7 @@ class ChatCommandTestCase : public MockedAiObjectContextTestCase
       CPPUNIT_TEST( wts );
       CPPUNIT_TEST( hire );
       CPPUNIT_TEST( craft );
+      CPPUNIT_TEST( flag );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -527,6 +528,11 @@ protected:
     void craft()
     {
         assertParametrizedCommand("craft", "craft");
+    }
+
+    void flag()
+    {
+        assertParametrizedCommand("flag", "flag");
     }
 };
 
