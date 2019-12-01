@@ -91,6 +91,8 @@ protected:
     void melee()
     {
         engine->addStrategy("melee");
+        tick();
+        addAura("omen of clarity");
         addAura("tree of life");
 
         tick();
@@ -98,7 +100,7 @@ protected:
         addTargetAura("faerie fire");
         tickInMeleeRange();
 
-        assertActions(">T:reach melee>T:faerie fire>T:melee");
+        assertActions(">S:omen of clarity>T:reach melee>T:faerie fire>T:melee");
     }
 };
 

@@ -28,6 +28,7 @@ public:
 
 		addAura("cat form");
         addAura("thorns");
+        addAura("omen of clarity");
 		addTargetAura("faerie fire (feral)");
     }
 
@@ -112,12 +113,17 @@ protected:
         removeAura("cat form");
         removeAura("thorns");
         tick();
+        addAura("thorns");
+
+        removeAura("omen of clarity");
+        tick();
+        addAura("omen of clarity");
         addAura("cat form");
 
         removeTargetAura("faerie fire (feral)");
         tickInMeleeRange();
 
-        assertActions(">S:cat form>T:faerie fire (feral)");
+        assertActions(">S:cat form>S:omen of clarity>T:faerie fire (feral)");
     }
 
     void aoe()

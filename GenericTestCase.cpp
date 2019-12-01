@@ -24,6 +24,8 @@ public:
     {
 		EngineTestBase::setUp();
 		setupEngine(new DruidAiObjectContext(ai), "bear", "flee", NULL);
+		addAura("omen of clarity");
+		addAura("thorns");
     }
 
 protected:

@@ -31,6 +31,7 @@ public:
 		setupEngine(new DruidAiObjectContext(ai), "bear", NULL);
 
 		addAura("thorns");
+		addAura("omen of clarity");
         addTargetAura("faerie fire (feral)");
         set<uint8>("rage", "self target", 100);
     }
@@ -182,12 +183,17 @@ protected:
 	{
         removeAura("thorns");
         tick();
+        addAura("thorns");
+
+        removeAura("omen of clarity");
+        tick();
+        addAura("omen of clarity");
 
         removeTargetAura("faerie fire (feral)");
         tickInMeleeRange();
 		addAura("dire bear form");
 
-        assertActions(">S:thorns>S:dire bear form");
+        assertActions(">S:thorns>S:omen of clarity>S:dire bear form");
 	}
 
     void aoe()
