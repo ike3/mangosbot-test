@@ -12,7 +12,6 @@ class DpsHunterEngineTestCase : public EngineTestBase
   CPPUNIT_TEST( summonPet );
   CPPUNIT_TEST( lowMana );
   CPPUNIT_TEST( boost );
-  CPPUNIT_TEST( cc );
   CPPUNIT_TEST( aoe );
   CPPUNIT_TEST( buff );
   CPPUNIT_TEST( incompatibles );
@@ -29,12 +28,15 @@ public:
 		engine->addStrategy("bdps");
 
         addAura("aspect of the hawk");
+        addTargetAura("hunter's mark");
+        set<float>("distance", "current target", 15.0f);
     }
 
 protected:
  	void combatVsMelee()
 	{
         removeAura("aspect of the hawk");
+        removeTargetAura("hunter's mark");
 
 		tick();
         addAura("aspect of the hawk");
@@ -60,7 +62,7 @@ protected:
         tick();
 		tickWithSpellAvailable("auto shot");
 
-		assertActions(">S:aspect of the hawk>T:hunter's mark>T:black arrow>T:serpent sting>T:explosive shot>T:auto shot>T:wing clip>S:flee>T:aimed shot>T:auto shot>T:chimera shot>T:auto shot>T:arcane shot");
+		assertActions(">S:aspect of the hawk>T:hunter's mark>T:serpent sting>T:black arrow>T:explosive shot>T:auto shot>T:wing clip>S:flee>T:aimed shot>T:auto shot>T:chimera shot>T:auto shot>T:arcane shot");
 
 	}
 
@@ -68,13 +70,11 @@ protected:
     {
         spellUnavailable("serpent sting");
         spellUnavailable("concussive shot");
-        removeAura("aspect of the hawk");
 
+        set<float>("distance", "current target", 15.0f);
 		tickWithLowMana(30);
 
-		tick();
-
-		assertActions(">T:viper sting>S:aspect of the hawk");
+		assertActions(">T:viper sting");
 
     }
 
@@ -89,22 +89,14 @@ protected:
 
     void boost()
     {
-		tick();
         spellUnavailable("serpent sting");
 
 		tickWithBalancePercent(1);
 		tickWithBalancePercent(1);
 
-		assertActions(">T:hunter's mark>S:rapid fire>S:readiness");
+		assertActions(">S:rapid fire>S:readiness");
     }
 
-
-    void cc()
-    {
-        tickWithCcTarget("freezing trap");
-
-        assertActions(">Cc:freezing trap");
-    }
 
     void aoe()
     {
@@ -149,13 +141,10 @@ protected:
 
     void feign_death()
     {
-        tick();
-
         tickWithMyAttackerCount(3);
         set<float>("distance", "current target", 5);
-        tickWithMyAttackerCount(3);
 
-        assertActions(">T:hunter's mark>S:feign death>S:flee");
+        assertActions(">S:feign death");
     }
 
     void stress()

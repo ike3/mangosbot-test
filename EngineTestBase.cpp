@@ -378,13 +378,9 @@ void EngineTestBase::tickWithPetUnhappy()
 
 void EngineTestBase::tickWithLowMana(int amount)
 {
-    Value<float>* distance = context->GetValue<float>("distance", "current target");
-    float oldDistance = distance->Get();
-    distance->Set(5.0f);
     set<uint8>("mana", "self target", amount);
     tick();
     set<uint8>("mana", "self target", 100);
-    distance->Set(oldDistance);
 }
 
 void EngineTestBase::tickWithTargetLowHealth(int amount)
