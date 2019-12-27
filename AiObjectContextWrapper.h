@@ -118,6 +118,16 @@ namespace ai
 
     };
 
+    class MockActiveSpellValue : public CalculatedValue<uint32>, public Qualified
+    {
+    public:
+        MockActiveSpellValue(PlayerbotAI* ai) : CalculatedValue<uint32>(ai) {}
+
+    public:
+        virtual uint32 Calculate() { return 0; }
+
+    };
+
     class MockValueContext : public NamedObjectContext<UntypedValue>
     {
     public:
@@ -197,6 +207,7 @@ namespace ai
             creators["new player nearby"] = &MockValueContext::mock;
             creators["already seen players"] = &MockValueContext::units;
             creators["nearest friendly players"] = &MockValueContext::units;
+            creators["active spell"] = &MockValueContext::active_spell;
         }
 
     private:
@@ -215,6 +226,7 @@ namespace ai
         static UntypedValue* units(PlayerbotAI* ai) { return new MockUnitListValue(ai); }
         static UntypedValue* spell_id(PlayerbotAI* ai) { return new MockSpellIdValue(ai); }
         static UntypedValue* position(PlayerbotAI* ai) { return new MockPositionValue(ai); }
+        static UntypedValue* active_spell(PlayerbotAI* ai) { return new MockActiveSpellValue(ai); }
     };
 
     class AiObjectContextWrapper : public AiObjectContext

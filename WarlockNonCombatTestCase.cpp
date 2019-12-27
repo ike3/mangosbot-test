@@ -34,15 +34,9 @@ protected:
 		tick();
 		itemAvailable("firestone", 1);
 
-		tick();
-		itemAvailable("spellstone", 1);
-
-        tick();
-        addAura("spellstone");
-
         tickWithNoPet();
 
-        assertActions(">S:fel armor>S:demon armor>S:demon skin>S:create healthstone>S:create firestone>S:create spellstone>S:spellstone>S:summon imp");
+        assertActions(">S:fel armor>S:demon armor>S:demon skin>S:create healthstone>S:create firestone>S:summon imp");
     }
 
 };
