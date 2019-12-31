@@ -19,7 +19,7 @@ public:
 	{
 		EngineTestBase::setUp();
 		setupEngine(new PaladinAiObjectContext(ai), "dps", NULL);
-		engine->addStrategy("bdps");
+		engine->addStrategies("bdps", "baoe");
 
         addAura("retribution aura");
         addAura("seal of vengeance");
