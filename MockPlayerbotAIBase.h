@@ -18,7 +18,7 @@ namespace ai
         virtual void RemoveAura(string name);
         virtual bool CanCastSpell(string name, Unit* target, Item* itemTarget = NULL);
         virtual bool CastSpell(string name, Unit* target, Item* itemTarget = NULL);
-        virtual bool HasAura(string spellName, Unit* player);
+        virtual bool HasAura(string spellName, Unit* player, bool maxStack = false);
         virtual bool IsInterruptableSpellCasting(Unit* player, string spell);
         virtual bool HasAuraToDispel(Unit* player, uint32 dispelType);
         virtual bool IsSpellCastUseful(string name, Unit* target);

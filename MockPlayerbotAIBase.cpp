@@ -57,7 +57,7 @@ bool MockPlayerbotAIBase::CastSpell(string name, Unit* target, Item* itemTarget)
     return true;
 }
 
-bool MockPlayerbotAIBase::HasAura(string spellName, Unit* player)
+bool MockPlayerbotAIBase::HasAura(string spellName, Unit* player, bool maxStack)
 {
     for (list<string >::iterator i = auras[player].begin(); i != auras[player].end(); i++)
     {
