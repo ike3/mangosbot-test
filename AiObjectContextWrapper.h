@@ -208,9 +208,11 @@ namespace ai
             creators["already seen players"] = &MockValueContext::units;
             creators["nearest friendly players"] = &MockValueContext::units;
             creators["active spell"] = &MockValueContext::active_spell;
+            creators["range"] = &MockValueContext::range;
         }
 
     private:
+        static UntypedValue* range(PlayerbotAI* ai) { return new MockFloatValue(ai); }
         static UntypedValue* always_true(PlayerbotAI* ai) { return new AlwaysTrueValue(ai); }
         static UntypedValue* stats(PlayerbotAI* ai) { return new MockStatsValue(ai); }
         static UntypedValue* itemlist(PlayerbotAI* ai) { return new MockItemListValue(ai); }
