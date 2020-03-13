@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
     sPlayerbotAIConfig.reactDelay = 100;
     sPlayerbotAIConfig.sightDistance = 40.0f;
     sPlayerbotAIConfig.spellDistance = 25.0f;
-    sPlayerbotAIConfig.shootDistance = 10.0f;
+    sPlayerbotAIConfig.shootDistance = 25.0f;
     sPlayerbotAIConfig.reactDistance = 100.0f;
     sPlayerbotAIConfig.grindDistance = 50.0f;
     sPlayerbotAIConfig.meleeDistance = ATTACK_DISTANCE;
