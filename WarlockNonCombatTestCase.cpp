@@ -28,15 +28,10 @@ protected:
         addAura("fel armor");
 
 		itemAvailable("soul shard", 2);
-		tick();
-		itemAvailable("healthstone", 1);
-
-		tick();
-		itemAvailable("firestone", 1);
 
         tickWithNoPet();
 
-        assertActions(">S:fel armor>S:demon armor>S:demon skin>S:create healthstone>S:create firestone>S:summon imp");
+        assertActions(">S:fel armor>S:demon armor>S:demon skin>S:summon imp");
     }
 
 };
