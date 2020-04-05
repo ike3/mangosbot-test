@@ -9,7 +9,6 @@ using namespace ai;
 class PaladinNonCombatTestCase : public EngineTestBase
 {
     CPPUNIT_TEST_SUITE( PaladinNonCombatTestCase );
-        CPPUNIT_TEST( buff );
 		CPPUNIT_TEST( resurrect );
 		CPPUNIT_TEST( healing );
         CPPUNIT_TEST( curePoison );
@@ -28,18 +27,6 @@ public:
     }
 
 protected:
-    void buff()
-    {
-        tick();
-
-        engine->addStrategy("bspeed");
-        set<bool>("mounted", "self target", true);
-		tick();
-        set<bool>("mounted", "self target", false);
-
-		assertActions(">S:check mount state>S:crusader aura");
-    }
-
 	void resurrect()
 	{
 		tickWithDeadPartyMember();

@@ -21,7 +21,7 @@ class TankPaladinTestCase : public EngineTestBase
 		CPPUNIT_TEST( resistances );
 		CPPUNIT_TEST( combatIncompatibles );
 		CPPUNIT_TEST( buffIncompatibles );
-		CPPUNIT_TEST( resistanceIncompatibles );
+		CPPUNIT_TEST( auraIncompatibles );
 		CPPUNIT_TEST( lowMana );
 		CPPUNIT_TEST( interrupt_enemy_healer );
 		CPPUNIT_TEST( stress );
@@ -200,18 +200,18 @@ protected:
     {
         engine->removeStrategy("barmor");
         engine->removeStrategy("tank");
-        engine->addStrategies("bhealth", "bmana", "bdps", "barmor", NULL);
+        engine->addStrategies("bdps", "bhealth", "bmana", NULL);
 
-        CPPUNIT_ASSERT(engine->ListStrategies() == "Strategies: barmor");
+        CPPUNIT_ASSERT(engine->ListStrategies() == "Strategies: bmana");
     }
 
-    void resistanceIncompatibles()
+    void auraIncompatibles()
     {
         engine->removeStrategy("barmor");
         engine->removeStrategy("tank");
-        engine->addStrategies("rshadow", "rfrost", "rfire", NULL);
+        engine->addStrategies("rfire", "rfrost", "rshadow", "baoe", "barmor", NULL);
 
-        CPPUNIT_ASSERT(engine->ListStrategies() == "Strategies: rfire");
+        CPPUNIT_ASSERT(engine->ListStrategies() == "Strategies: barmor");
     }
 
     void interrupt_enemy_healer()
