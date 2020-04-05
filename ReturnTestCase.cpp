@@ -31,7 +31,7 @@ protected:
 
         set<time_t>("stay time", now - 40);
         ai::PositionMap& posMap = context->GetValue<ai::PositionMap&>("position")->Get();
-        ai::Position randomPosition; randomPosition.Set(1, 1, 1);
+        ai::Position randomPosition; randomPosition.Set(1, 1, 1, 0);
         posMap["return"] = randomPosition;
 		tick();
 

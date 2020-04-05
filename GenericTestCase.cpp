@@ -96,7 +96,7 @@ protected:
 	    engine->addStrategy("guard");
 
 	    ai::PositionMap& posMap = context->GetValue<ai::PositionMap&>("position")->Get();
-	    ai::Position randomPosition; randomPosition.Set(1, 1, 1);
+	    ai::Position randomPosition; randomPosition.Set(1, 1, 1, 0);
 	    posMap["guard"] = randomPosition;
 	    set<float>("distance", "position_guard", 10);
 	    tick();
