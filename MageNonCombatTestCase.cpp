@@ -26,6 +26,7 @@ public:
 protected:
     void buff()
     {
+        engine->addStrategy("buff");
 		tick();
         addAura("arcane intellect");
 

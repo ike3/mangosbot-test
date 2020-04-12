@@ -25,6 +25,7 @@ public:
 protected:
     void buff()
     {
+        engine->addStrategy("buff");
 		tick();
 		addAura("mark of the wild");
 

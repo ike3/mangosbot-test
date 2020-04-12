@@ -67,6 +67,7 @@ protected:
 
     void buff()
     {
+        engine->addStrategy("buff");
 		removeAura("power word: fortitude");
         removeAura("divine spirit");
         removeAura("inner fire");
