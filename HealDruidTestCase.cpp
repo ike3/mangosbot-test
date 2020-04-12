@@ -14,6 +14,7 @@ class HealDruidTestCase : public EngineTestBase
 	CPPUNIT_TEST( aoe );
 	CPPUNIT_TEST( range );
 	CPPUNIT_TEST( melee );
+	CPPUNIT_TEST( boost );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -101,6 +102,17 @@ protected:
         tickInMeleeRange();
 
         assertActions(">S:omen of clarity>T:reach melee>T:faerie fire>T:melee");
+    }
+
+    void boost()
+    {
+        addAura("omen of clarity");
+        addAura("tree of life");
+
+        engine->addStrategy("boost");
+        tick();
+
+        assertActions(">S:nature's swiftness");
     }
 };
 

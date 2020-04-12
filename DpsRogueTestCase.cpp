@@ -14,6 +14,8 @@ class DpsRogueTestCase : public EngineTestBase
 		CPPUNIT_TEST( interruptSpells );
 		CPPUNIT_TEST( interrupt_enemy_healer );
 		CPPUNIT_TEST( stress );
+		CPPUNIT_TEST( aoe );
+		CPPUNIT_TEST( boost );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -74,6 +76,26 @@ protected:
     void stress()
     {
         runStressTest();
+    }
+
+    void aoe()
+    {
+        tickInMeleeRange();
+
+        engine->addStrategy("aoe");
+        tickWithAoeCount(3);
+
+        assertActions(">T:riposte>S:blade flurry");
+    }
+
+    void boost()
+    {
+        tickInMeleeRange();
+
+        engine->addStrategy("boost");
+        tick();
+
+        assertActions(">T:riposte>S:adrenaline rush");
     }
 };
 

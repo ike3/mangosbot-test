@@ -20,6 +20,7 @@ class HealPriestTestCase : public EngineTestBase
 	CPPUNIT_TEST( incompatibles );
 	CPPUNIT_TEST( range );
 	CPPUNIT_TEST( stress );
+	CPPUNIT_TEST( boost );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -196,6 +197,15 @@ protected:
     void stress()
     {
         runStressTest();
+    }
+
+    void boost()
+    {
+        engine->addStrategy("boost");
+        tick();
+        tick();
+
+        assertActions(">S:inner focus>S:power infusion");
     }
 };
 

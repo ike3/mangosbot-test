@@ -89,12 +89,14 @@ protected:
 
     void boost()
     {
+        engine->addStrategy("boost");
         spellUnavailable("serpent sting");
 
-		tickWithBalancePercent(1);
-		tickWithBalancePercent(1);
+        tick();
+        tick();
+        tick();
 
-		assertActions(">S:rapid fire>S:readiness");
+		assertActions(">S:rapid fire>S:readiness>S:bestial wrath");
     }
 
 

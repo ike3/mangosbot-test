@@ -51,8 +51,6 @@ protected:
 		spellAvailable("starfire");
 		tickInSpellRange();
 
-        tickWithBalancePercent(49);
-
         spellAvailable("starfire");
         spellAvailable("wrath");
         addAura("eclipse (lunar)");
@@ -61,7 +59,7 @@ protected:
         addAura("eclipse (solar)");
         tick();
 
-		assertActions(">S:moonkin form>T:reach spell>T:faerie fire>T:insect swarm>T:moonfire>T:starfire>T:wrath>T:starfire>S:nature's grasp>T:starfire>T:wrath");
+		assertActions(">S:moonkin form>T:reach spell>T:faerie fire>T:insect swarm>T:moonfire>T:starfire>T:wrath>T:starfire>T:starfire>T:wrath");
     }
 
 	void healHimself()
@@ -89,7 +87,7 @@ protected:
         tickWithLowHealth(1);
         tickWithLowHealth(1);
 
-        assertActions(">S:caster form>S:rejuvenation>S:caster form>S:regrowth>S:healing touch>S:caster form>S:regrowth>S:regrowth>S:healing touch");
+        assertActions(">S:caster form>S:rejuvenation>S:caster form>S:regrowth>S:healing touch>S:caster form>S:regrowth>S:nature's grasp>S:regrowth");
     }
 
 	void healOthers()

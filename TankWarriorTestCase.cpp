@@ -44,13 +44,13 @@ protected:
 
     void low_health()
     {
-        tickWithLowHealth(50); // shield wall
         tickWithLowHealth(50); // shield block
+        tickWithLowHealth(30); // shield wall
 
 		tickWithLowHealth(4);
 		tickWithLowHealth(4);
 
-		assertActions(">T:shield wall>S:shield block>S:last stand>T:intimidating shout");
+		assertActions(">S:shield block>T:shield wall>S:last stand>T:intimidating shout");
     }
 
     void buff()

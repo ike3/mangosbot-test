@@ -69,20 +69,6 @@ protected:
 		assertActions(">T:frostbolt>S:remove curse>P:remove curse on party>S:remove lesser curse>P:remove lesser curse on party>T:shoot>T:spellsteal");
     }
 
-    void boost()
-    {
-        tick(); // frostbolt
-
-		tickWithBalancePercent(1);
-
-        spellAvailable("frostbolt");
-        tick(); // frostbolt
-
-        tick(); // shoot
-
-		assertActions(">T:frostbolt>S:icy veins>T:frostbolt>T:shoot");
-    }
-
     void cc()
     {
         tickWithCcTarget("polymorph");
@@ -130,6 +116,15 @@ protected:
         tickWithEnemyHealerIsCastingInterruptableSpell("counterspell");
 
         assertActions(">H:counterspell on enemy healer");
+    }
+
+    void boost()
+    {
+        engine->addStrategy("boost");
+        tick();
+        tick();
+
+        assertActions(">S:presence of mind>S:arcane power");
     }
 
     void stress()

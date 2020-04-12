@@ -12,6 +12,7 @@ class DpsPaladinTestCase : public EngineTestBase
     CPPUNIT_TEST( buff );
 	CPPUNIT_TEST( combatVsMelee );
 	CPPUNIT_TEST( stress );
+	CPPUNIT_TEST( boost );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -74,6 +75,15 @@ protected:
     {
         runStressTest();
     }
+
+    void boost()
+    {
+        engine->addStrategy("boost");
+        tick();
+
+        assertActions(">S:divine favor");
+    }
+
 };
 
 CPPUNIT_TEST_SUITE_REGISTRATION( DpsPaladinTestCase );
