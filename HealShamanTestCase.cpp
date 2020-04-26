@@ -54,9 +54,8 @@ protected:
     void aoe_heal()
     {
         tickWithAoeHeal("medium");
-        tickWithAoeHeal("medium");
 
-        assertActions(">P:chain heal>P:lesser healing wave on party");
+        assertActions(">P:chain heal");
     }
 
     void buff()

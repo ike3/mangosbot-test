@@ -151,6 +151,7 @@ namespace ai
             creators["grind target"] = &MockValueContext::mock;
             creators["least hp target"] = &MockValueContext::mock;
             creators["rti target"] = &MockValueContext::mock;
+            creators["rti cc target"] = &MockValueContext::mock;
             creators["duel target"] = &MockValueContext::mock;
             creators["enemy player target"] = &MockValueContext::mock;
             creators["enemy healer target"] = &MockValueContext::mock;
@@ -196,6 +197,7 @@ namespace ai
             creators["aoe heal"] = &MockValueContext::stats;
 
             creators["rti"] = &MockValueContext::str;
+            creators["rti cc"] = &MockValueContext::str;
             creators["spell id"] = &MockValueContext::spell_id;
             creators["threat"] = &MockValueContext::stats;
             creators["bag space"] = &MockValueContext::stats;
