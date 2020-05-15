@@ -10,7 +10,6 @@ class PaladinNonCombatTestCase : public EngineTestBase
 {
     CPPUNIT_TEST_SUITE( PaladinNonCombatTestCase );
 		CPPUNIT_TEST( resurrect );
-		CPPUNIT_TEST( healing );
         CPPUNIT_TEST( curePoison );
         CPPUNIT_TEST( cureMagic );
         CPPUNIT_TEST( cureDisease );
@@ -33,34 +32,23 @@ protected:
 		assertActions(">P:redemption");
 	}
 
-    void healing()
-    {
-        tickWithLowHealth(50);
-        tickWithLowHealth(30);
-
-        spellAvailable("flash of light");
-        spellAvailable("holy light");
-        tickWithPartyLowHealth(50);
-        tickWithPartyLowHealth(30);
-
-        assertActions(">S:flash of light>S:holy light>P:flash of light on party>P:holy light on party");
-    }
-
-
     void cureDisease()
     {
+        engine->addStrategy("cure");
         cureKind(DISPEL_DISEASE);
         assertActions(">S:cleanse>P:cleanse disease on party>S:purify>P:purify disease on party");
     }
 
     void curePoison()
     {
+        engine->addStrategy("cure");
         cureKind(DISPEL_POISON);
         assertActions(">S:cleanse>P:cleanse poison on party>S:purify>P:purify poison on party");
     }
 
     void cureMagic()
     {
+        engine->addStrategy("cure");
         cureKind(DISPEL_MAGIC);
         assertActions(">S:cleanse>P:cleanse magic on party>S:check mount state>S:check values");
     }

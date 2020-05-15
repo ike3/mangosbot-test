@@ -10,8 +10,6 @@ class PriestNonCombatTestCase : public EngineTestBase
 {
     CPPUNIT_TEST_SUITE( PriestNonCombatTestCase );
     CPPUNIT_TEST( buff );
-    CPPUNIT_TEST( healing );
-    CPPUNIT_TEST( aoe_heal );
     CPPUNIT_TEST( nonCombat );
     CPPUNIT_TEST( dispel );
     CPPUNIT_TEST_SUITE_END();
@@ -36,33 +34,6 @@ protected:
 		tickWithDeadPartyMember();
 
 		assertActions(">P:resurrection");
-    }
-
-    void aoe_heal()
-    {
-        tickWithAoeHeal("medium");
-
-		assertActions(">P:circle of healing");
-    }
-
-    void healing()
-    {
-		tickWithLowHealth(30);
-
-		spellAvailable("flash heal");
-		tickWithPartyLowHealth(30);
-
-		tickWithLowHealth(10);
-		addAura("power word: shield");
-		tickWithLowHealth(10);
-
-		spellAvailable("power word: shield");
-		spellAvailable("greater heal");
-		tickWithPartyLowHealth(10);
-        addPartyAura("power word: shield");
-		tickWithPartyLowHealth(10);
-
-		assertActions(">S:flash heal>P:flash heal on party>S:power word: shield>S:greater heal>P:power word: shield on party>P:greater heal on party");
     }
 
     void buff()
@@ -93,6 +64,7 @@ protected:
 
     void dispel()
     {
+        engine->addStrategy("cure");
         tickWithAuraToDispel(DISPEL_DISEASE);
         tickWithAuraToDispel(DISPEL_DISEASE);
 
