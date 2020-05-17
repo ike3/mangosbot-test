@@ -63,6 +63,7 @@ int main(int argc, char* argv[])
     sPlayerbotAIConfig.followDistance = ATTACK_DISTANCE;
     sPlayerbotAIConfig.tooCloseDistance = ATTACK_DISTANCE;
     sPlayerbotAIConfig.contactDistance = CONTACT_DISTANCE;
+    sPlayerbotAIConfig.healDistance = 20.0f;
     sPlayerbotAIConfig.rpgDistance = 80.0f;
     sPlayerbotAIConfig.lootDistance = 20.0f;
     sPlayerbotAIConfig.criticalHealth = 25;

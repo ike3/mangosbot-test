@@ -36,21 +36,18 @@ protected:
         removeAura("blessing of might");
         removeAura("seal of vengeance");
         removeAura("holy shield");
+        set<bool>("combat", "self target", true);
 
         tick();
         addAura("devotion aura");
 
         tick();
-        tick();
-        tick();
-        tick();
         addAura("seal of wisdom");
 
         tick();
-        tick();
         addAura("blessing of kings");
 
-        assertActions(">S:retribution aura>S:seal of vengeance>S:seal of command>S:seal of wisdom>S:seal of justice>S:blessing of might>S:blessing of kings");
+        assertActions(">S:retribution aura>S:seal of wisdom>S:blessing of might");
     }
 
     void combatVsMelee()

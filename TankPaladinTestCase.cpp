@@ -13,7 +13,7 @@ class TankPaladinTestCase : public EngineTestBase
 		CPPUNIT_TEST( paladinMustHoldAggro );
 		CPPUNIT_TEST( healing );
 		CPPUNIT_TEST( buff );
-		CPPUNIT_TEST( bmana );
+		CPPUNIT_TEST( seal );
 		CPPUNIT_TEST( curePoison );
 		CPPUNIT_TEST( cureMagic );
 		CPPUNIT_TEST( cureDisease );
@@ -46,43 +46,34 @@ public:
     }
 
 protected:
-    void bmana()
+    void seal()
     {
 		engine->removeStrategy("bhealth");
-		engine->addStrategy("bmana");
+		set<bool>("combat", "self target", true);
 
         removeAura("seal of justice");
         tick();
 
-		assertActions(">S:seal of wisdom");
+		assertActions(">S:seal of light");
 	}
 
     void buff()
     {
         removeAura("devotion aura");
-        removeAura("righteous fury");
-        removeAura("blessing of sanctuary");
         removeAura("seal of justice");
-        removeAura("holy shield");
+        removeAura("blessing of sanctuary");
+        set<bool>("combat", "self target", true);
 
         tick();
         addAura("devotion aura");
 
         tick();
-        tick();
         addAura("seal of light");
 
         tick();
-        tick();
         addAura("blessing of kings");
 
-        tick();
-        addAura("righteous fury");
-
-        tick();
-        addAura("holy shield");
-
-        assertActions(">S:devotion aura>S:blessing of sanctuary>S:righteous fury>S:holy shield>T:judgement of light>T:melee>T:melee");
+        assertActions(">S:devotion aura>S:seal of light>S:blessing of sanctuary");
     }
 
     void healing()

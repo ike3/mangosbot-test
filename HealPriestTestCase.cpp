@@ -21,6 +21,7 @@ class HealPriestTestCase : public EngineTestBase
 	CPPUNIT_TEST( range );
 	CPPUNIT_TEST( stress );
 	CPPUNIT_TEST( boost );
+	CPPUNIT_TEST( reach_heal );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -206,6 +207,16 @@ protected:
         tick();
 
         assertActions(">S:inner focus>S:power infusion");
+    }
+
+    void reach_heal()
+    {
+        set<float>("distance", "party member to heal", 30.0f);
+        tickWithPartyLowHealth(1);
+        set<float>("distance", "party member to heal", 5.0f);
+        tickWithPartyLowHealth(1);
+
+        assertActions(">P:reach party member to heal>P:power word: shield on party");
     }
 };
 
