@@ -27,19 +27,19 @@ public:
 protected:
  	void combatVsMelee()
 	{
- 	    tick();
- 	    addTargetAura("immolate");
-
- 	    tick();
-
+        tick();
+        addTargetAura("siphon life");
         tick();
         addTargetAura("corruption");
         tick();
         addTargetAura("curse of agony");
+        tick();
+        addTargetAura("immolate");
 
+ 	    tick();
         tick();
 
-        tickWithLowHealth(49);
+        tickWithLowHealth(39);
 
         tick();
 
@@ -57,7 +57,7 @@ protected:
 		addAura("backlash");
 		tick();
 
-		assertActions(">T:immolate>T:conflagrate>T:corruption>T:curse of agony>T:incinirate>T:drain life>T:shadow bolt>T:drain soul>T:shoot>T:shadow bolt>T:shadow bolt");
+		assertActions(">T:siphon life>T:corruption>T:curse of agony>T:immolate>T:conflagrate>T:incinirate>T:drain life>T:shadow bolt>T:drain soul>T:shoot>T:shadow bolt>T:shadow bolt");
 	}
 
     void low_mana()
@@ -70,21 +70,22 @@ protected:
     void aoe()
     {
         engine->addStrategy("aoe");
-
-        tickWithAoeCount(2);
-        tickWithAoeCount(3);
-
         set<Unit*>("attacker without aura", "corruption", MockedTargets::GetAttackerWithoutAura());
         set<Unit*>("attacker without aura", "curse of agony", MockedTargets::GetAttackerWithoutAura());
-        tick();
+        set<Unit*>("attacker without aura", "siphon life", MockedTargets::GetAttackerWithoutAura());
 
+        tick();
+        set<Unit*>("attacker without aura", "siphon life", NULL);
+
+        tick();
         set<Unit*>("attacker without aura", "curse of agony", NULL);
+
         tick();
         set<Unit*>("attacker without aura", "corruption", NULL);
 
-        tick();
+        tickWithAoeCount(3);
 
-		assertActions(">T:shadowfury>T:rain of fire>A:curse of agony on attacker>A:corruption on attacker>T:immolate");
+		assertActions(">A:siphon life on attacker>A:curse of agony on attacker>A:corruption on attacker>T:rain of fire");
     }
 
     void cc()
