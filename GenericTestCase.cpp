@@ -17,6 +17,7 @@ class GenericTestCase : public EngineTestBase
 	CPPUNIT_TEST( threat );
 	CPPUNIT_TEST( facing );
 	CPPUNIT_TEST( drop_target );
+	CPPUNIT_TEST( possible_ads );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -137,6 +138,19 @@ protected:
         set<bool>("invalid target", "current target", false);
 
         assertActions(">S:drop target");
+    }
+
+    void possible_ads()
+    {
+        engine->addStrategy("ads");
+        set<bool>("possible ads", true);
+
+        set<Unit*>("dps target", MockedTargets::GetTargetForDps());
+        set<Unit*>("tank target", MockedTargets::GetTargetForTank());
+
+        tick();
+
+        assertActions(">S:flee");
     }
 };
 
