@@ -12,6 +12,7 @@ class PriestNonCombatTestCase : public EngineTestBase
     CPPUNIT_TEST( buff );
     CPPUNIT_TEST( nonCombat );
     CPPUNIT_TEST( dispel );
+    CPPUNIT_TEST( rshadow );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -79,6 +80,20 @@ protected:
         tickWithPartyAuraToDispel(DISPEL_MAGIC);
 
 		assertActions(">S:abolish disease>S:cure disease>P:abolish disease on party>P:cure disease on party>S:dispel magic>P:dispel magic on party");
+    }
+
+    void rshadow()
+    {
+        engine->addStrategy("rshadow");
+
+        tick();
+        addAura("shadow protection");
+        spellAvailable("shadow protection");
+
+        tick();
+        addPartyAura("shadow protection");
+
+		assertActions(">S:shadow protection>P:shadow protection on party");
     }
 };
 
