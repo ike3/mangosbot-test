@@ -187,6 +187,7 @@ namespace ai
             creators["can loot"] = &MockValueContext::logical;
             creators["invalid target"] = &MockValueContext::logical;
             creators["collision"] = &MockValueContext::logical;
+            creators["inside target"] = &MockValueContext::logical;
 
             creators["possible targets"] = &MockValueContext::units;
             creators["possible ads"] = &MockValueContext::logical;
