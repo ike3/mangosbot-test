@@ -24,7 +24,7 @@ public:
     void setUp()
     {
 		EngineTestBase::setUp();
-		setupEngine(new MageAiObjectContext(ai), "frost", NULL);
+		setupEngine(new MageAiObjectContext(ai), "frost", "ranged", NULL);
     }
 
 protected:
@@ -91,7 +91,7 @@ protected:
    	{
         engine->addStrategies("frost", "fire", NULL);
 
-        CPPUNIT_ASSERT(engine->ListStrategies() == "Strategies: fire");
+        CPPUNIT_ASSERT(engine->ListStrategies() == "Strategies: fire, ranged");
    	}
 
     void low_mana()

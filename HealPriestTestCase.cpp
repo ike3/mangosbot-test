@@ -28,7 +28,7 @@ public:
     void setUp()
     {
 		EngineTestBase::setUp();
-		setupEngine(new PriestAiObjectContext(ai), "heal", NULL);
+		setupEngine(new PriestAiObjectContext(ai), "heal", "ranged", NULL);
 
         addAura("power word: fortitude");
         addAura("divine spirit");
@@ -183,6 +183,7 @@ protected:
 
     void incompatibles()
     {
+        engine->removeStrategy("ranged");
         engine->addStrategies("heal", "shadow", NULL);
 
         CPPUNIT_ASSERT(engine->ListStrategies() == "Strategies: shadow");

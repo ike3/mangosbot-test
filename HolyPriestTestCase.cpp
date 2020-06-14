@@ -19,7 +19,7 @@ public:
     void setUp()
     {
 		EngineTestBase::setUp();
-		setupEngine(new PriestAiObjectContext(ai), "holy", NULL);
+		setupEngine(new PriestAiObjectContext(ai), "holy", "ranged", NULL);
 
         addAura("power word: fortitude");
         addAura("divine spirit");
@@ -48,6 +48,7 @@ protected:
 
     void incompatibles()
     {
+        engine->removeStrategy("ranged");
         engine->addStrategies("shadow", "holy", NULL);
 
         CPPUNIT_ASSERT_EQUAL(engine->ListStrategies(), string("Strategies: holy"));

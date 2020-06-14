@@ -22,7 +22,7 @@ public:
     virtual void setUp()
     {
 		EngineTestBase::setUp();
-		setupEngine(new RogueAiObjectContext(ai), "dps", NULL);
+		setupEngine(new RogueAiObjectContext(ai), "dps", "close", NULL);
         addAura("slice and dice");
         addTargetAura("rupture");
     }

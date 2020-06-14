@@ -18,7 +18,7 @@ public:
     void setUp()
     {
 		EngineTestBase::setUp();
-		setupEngine(new MageAiObjectContext(ai), "arcane", NULL);
+		setupEngine(new MageAiObjectContext(ai), "arcane", "ranged", NULL);
     }
 
 protected:

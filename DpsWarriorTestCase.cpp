@@ -23,7 +23,7 @@ public:
     void setUp()
     {
         EngineTestBase::setUp();
-        setupEngine(new WarriorAiObjectContext(ai), "dps", NULL);
+        setupEngine(new WarriorAiObjectContext(ai), "dps", "close", NULL);
 
 		spellUnavailable("revenge");
         addAura("battle shout");

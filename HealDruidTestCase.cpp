@@ -91,7 +91,7 @@ protected:
 
     void melee()
     {
-        engine->addStrategy("melee");
+        engine->addStrategies("melee", "close", NULL);
         tick();
         addAura("omen of clarity");
         addAura("tree of life");

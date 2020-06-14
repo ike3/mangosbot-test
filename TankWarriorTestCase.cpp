@@ -25,7 +25,7 @@ public:
     void setUp()
     {
         EngineTestBase::setUp();
-        setupEngine(new WarriorAiObjectContext(ai), "tank", NULL);
+        setupEngine(new WarriorAiObjectContext(ai), "tank", "close", NULL);
 
         // this buff is combat-only, so skip for most test cases
         addAura("battle shout");
@@ -123,6 +123,7 @@ protected:
 
     void incompatibles()
     {
+        engine->removeStrategy("close");
         engine->addStrategies("tank", "dps", NULL);
 
         CPPUNIT_ASSERT(engine->ListStrategies() == "Strategies: dps");

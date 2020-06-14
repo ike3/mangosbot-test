@@ -32,7 +32,7 @@ public:
 	virtual void setUp()
 	{
 		EngineTestBase::setUp();
-		setupEngine(new PaladinAiObjectContext(ai), "tank", NULL);
+		setupEngine(new PaladinAiObjectContext(ai), "tank", "close", NULL);
 		engine->addStrategy("barmor");
 
         addAura("devotion aura");
@@ -180,6 +180,7 @@ protected:
 
     void combatIncompatibles()
     {
+        engine->removeStrategy("close");
         engine->removeStrategy("barmor");
         engine->removeStrategy("tank");
         engine->addStrategies("dps", "tank", NULL);
@@ -189,6 +190,7 @@ protected:
 
     void buffIncompatibles()
     {
+        engine->removeStrategy("close");
         engine->removeStrategy("barmor");
         engine->removeStrategy("tank");
         engine->addStrategies("bdps", "bhealth", "bmana", NULL);
@@ -198,6 +200,7 @@ protected:
 
     void auraIncompatibles()
     {
+        engine->removeStrategy("close");
         engine->removeStrategy("barmor");
         engine->removeStrategy("tank");
         engine->addStrategies("rfire", "rfrost", "rshadow", "baoe", "barmor", NULL);

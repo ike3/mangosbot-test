@@ -23,7 +23,7 @@ public:
     void setUp()
     {
 		EngineTestBase::setUp();
-		setupEngine(new MageAiObjectContext(ai), "fire", NULL);
+		setupEngine(new MageAiObjectContext(ai), "fire", "ranged", NULL);
     }
 
 protected:

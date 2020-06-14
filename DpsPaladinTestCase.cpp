@@ -19,7 +19,7 @@ public:
 	virtual void setUp()
 	{
 		EngineTestBase::setUp();
-		setupEngine(new PaladinAiObjectContext(ai), "dps", NULL);
+		setupEngine(new PaladinAiObjectContext(ai), "dps", "close", NULL);
 		engine->addStrategies("bdps", "baoe", NULL);
 
         addAura("retribution aura");
