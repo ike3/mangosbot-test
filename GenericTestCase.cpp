@@ -150,7 +150,7 @@ protected:
 
         tick();
 
-        assertActions(">S:flee");
+        assertActions(">S:flee with pet");
     }
 };
 
