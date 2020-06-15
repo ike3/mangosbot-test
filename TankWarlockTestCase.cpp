@@ -35,6 +35,7 @@ protected:
 
     void cc()
     {
+        engine->addStrategy("cc");
         tickWithCcTarget("banish");
         tickWithCcTarget("fear");
 

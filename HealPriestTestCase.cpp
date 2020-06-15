@@ -21,6 +21,7 @@ class HealPriestTestCase : public EngineTestBase
 	CPPUNIT_TEST( range );
 	CPPUNIT_TEST( stress );
 	CPPUNIT_TEST( boost );
+	CPPUNIT_TEST( shackle_undead );
 	CPPUNIT_TEST( reach_heal );
     CPPUNIT_TEST_SUITE_END();
 
@@ -218,6 +219,14 @@ protected:
         tickWithPartyLowHealth(1);
 
         assertActions(">P:reach party member to heal>P:power word: shield on party");
+    }
+
+    void shackle_undead()
+    {
+        engine->addStrategy("cc");
+        tickWithCcTarget("shackle undead");
+
+        assertActions(">Cc:shackle undead");
     }
 };
 

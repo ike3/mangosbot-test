@@ -90,6 +90,7 @@ protected:
 
     void cc()
     {
+        engine->addStrategy("cc");
         tickWithCcTarget("fear");
 
         assertActions(">Cc:fear on cc");

@@ -71,6 +71,7 @@ protected:
 
     void cc()
     {
+        engine->addStrategy("cc");
         tickWithCcTarget("polymorph");
 
         assertActions(">Cc:polymorph");

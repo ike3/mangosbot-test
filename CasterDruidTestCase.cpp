@@ -147,6 +147,7 @@ protected:
 
     void cc()
     {
+        engine->addStrategy("cc");
         tickWithCcTarget("entangling roots");
 
         assertActions(">Cc:entangling roots on cc");

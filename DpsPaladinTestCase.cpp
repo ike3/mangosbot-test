@@ -13,6 +13,7 @@ class DpsPaladinTestCase : public EngineTestBase
 	CPPUNIT_TEST( combatVsMelee );
 	CPPUNIT_TEST( stress );
 	CPPUNIT_TEST( boost );
+	CPPUNIT_TEST( cc );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -79,6 +80,14 @@ protected:
         tick();
 
         assertActions(">S:divine favor");
+    }
+
+    void cc()
+    {
+        engine->addStrategy("cc");
+        tickWithCcTarget("turn undead");
+
+        assertActions(">Cc:turn undead");
     }
 
 };
