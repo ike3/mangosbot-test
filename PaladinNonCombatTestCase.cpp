@@ -13,6 +13,7 @@ class PaladinNonCombatTestCase : public EngineTestBase
         CPPUNIT_TEST( curePoison );
         CPPUNIT_TEST( cureMagic );
         CPPUNIT_TEST( cureDisease );
+        CPPUNIT_TEST( bthreat );
     CPPUNIT_TEST_SUITE_END();
 
 
@@ -53,6 +54,13 @@ protected:
         assertActions(">S:cleanse>P:cleanse magic on party>S:check mount state>S:check values");
     }
 
+    void bthreat()
+    {
+        engine->addStrategy("bthreat");
+        tick();
+        assertActions(">S:righteous fury");
+    }
+
     void cureKind(DispelType type)
     {
         spellAvailable("cleanse");
@@ -67,6 +75,7 @@ protected:
         spellAvailable("purify");
         tickWithPartyAuraToDispel(type);
     }
+
 };
 
 CPPUNIT_TEST_SUITE_REGISTRATION( PaladinNonCombatTestCase );
