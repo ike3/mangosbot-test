@@ -82,6 +82,7 @@ class ChatCommandTestCase : public MockedAiObjectContextTestCase
       CPPUNIT_TEST( craft );
       CPPUNIT_TEST( flag );
       CPPUNIT_TEST( range );
+      CPPUNIT_TEST( ra );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -539,6 +540,11 @@ protected:
     void range()
     {
         assertParametrizedCommand("range", "range");
+    }
+
+    void ra()
+    {
+        assertParametrizedCommand("ra", "ra");
     }
 };
 
