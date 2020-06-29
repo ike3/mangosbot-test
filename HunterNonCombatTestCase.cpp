@@ -54,6 +54,7 @@ protected:
 
     void summonPet()
     {
+        engine->addStrategy("pet");
         tickWithNoPet();
 
 		tickWithPetDead();
@@ -73,6 +74,7 @@ protected:
 
     void feedPet()
     {
+        engine->addStrategy("pet");
         tickWithPetUnhappy();
 
 		assertActions(">S:feed pet");

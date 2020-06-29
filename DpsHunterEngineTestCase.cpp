@@ -80,6 +80,7 @@ protected:
 
     void summonPet()
     {
+        engine->addStrategy("pet");
         tickWithNoPet();
 		tickWithPetLowHealth(30);
 

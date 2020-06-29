@@ -29,9 +29,10 @@ protected:
 
 		itemAvailable("soul shard", 2);
 
+        engine->addStrategy("pet");
         tickWithNoPet();
 
-        assertActions(">S:fel armor>S:demon armor>S:demon skin>S:summon imp");
+        assertActions(">S:fel armor>S:demon armor>S:demon skin>S:summon voidwalker");
     }
 
 };

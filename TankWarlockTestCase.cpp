@@ -27,10 +27,10 @@ protected:
     void summonPet()
     {
         itemAvailable("soul shard", 2);
-        tickWithNoPet();
+        engine->addStrategy("pet");
         tickWithNoPet();
 
-		assertActions(">S:summon felguard>S:summon voidwalker");
+		assertActions(">S:summon voidwalker");
     }
 
     void cc()
