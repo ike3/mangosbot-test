@@ -18,6 +18,7 @@ class DpsHunterEngineTestCase : public EngineTestBase
   CPPUNIT_TEST( feign_death );
   CPPUNIT_TEST( stress );
   CPPUNIT_TEST( snare );
+  CPPUNIT_TEST( cc );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -162,6 +163,15 @@ protected:
 
         assertActions(">Sn:concussive shot on snare target");
     }
+
+    void cc()
+    {
+        engine->addStrategy("cc");
+        tickWithCcTarget("scare beast");
+
+        assertActions(">Cc:scare beast on cc");
+    }
+
 };
 
 CPPUNIT_TEST_SUITE_REGISTRATION( DpsHunterEngineTestCase );

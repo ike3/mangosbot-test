@@ -36,7 +36,17 @@ protected:
 		tickWithNoDrink();
 		tickWithNoFood();
 
-        assertActions(">S:arcane intellect>P:arcane intellect on party>S:conjure water>S:conjure food");
+		set<Unit*>("party member without food", MockedTargets::GetPartyMember());
+        set<uint8>("item count", "conjured food", 1);
+		tick();
+		set<Unit*>("party member without food", NULL);
+
+		set<Unit*>("party member without water", MockedTargets::GetPartyMember());
+        set<uint8>("item count", "conjured water", 1);
+        tick();
+		set<Unit*>("party member without water", NULL);
+
+        assertActions(">S:arcane intellect>P:arcane intellect on party>S:conjure water>S:conjure food>P:give food>P:give water");
     }
 
     void bmana()

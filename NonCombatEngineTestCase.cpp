@@ -71,10 +71,7 @@ protected:
 
 		tickWithNoTarget();
 
-		set<Unit*>("current target", MockedTargets::GetCurrentTarget()); // means any other
-		tick();
-
-		assertActions(">S:stay>Enemy:attack enemy player>Enemy:attack enemy player");
+		assertActions(">S:stay>Enemy:attack enemy player");
 	}
 
     void loot()

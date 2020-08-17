@@ -150,7 +150,9 @@ protected:
         engine->addStrategy("cc");
         tickWithCcTarget("entangling roots");
 
-        assertActions(">Cc:entangling roots on cc");
+        tickWithCcTarget("hibernate");
+
+        assertActions(">Cc:entangling roots on cc>Cc:hibernate on cc");
     }
 
     void aoe()

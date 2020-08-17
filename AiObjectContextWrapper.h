@@ -156,6 +156,9 @@ namespace ai
             creators["enemy player target"] = &MockValueContext::mock;
             creators["enemy healer target"] = &MockValueContext::mock;
             creators["snare target"] = &MockValueContext::mock;
+            creators["party member without item"] = &MockValueContext::mock;
+            creators["party member without food"] = &MockValueContext::mock;
+            creators["party member without water"] = &MockValueContext::mock;
 
             creators["health"] = &MockValueContext::stats;
             creators["rage"] = &MockValueContext::stats;
