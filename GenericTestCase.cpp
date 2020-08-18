@@ -16,6 +16,7 @@ class GenericTestCase : public EngineTestBase
 	CPPUNIT_TEST( guard );
 	CPPUNIT_TEST( threat );
 	CPPUNIT_TEST( facing );
+	CPPUNIT_TEST( set_behind );
 	CPPUNIT_TEST( drop_target );
 	CPPUNIT_TEST( possible_ads );
     CPPUNIT_TEST_SUITE_END();
@@ -130,6 +131,22 @@ protected:
 
 		assertActions(">S:set facing");
 	}
+
+    void set_behind()
+    {
+        engine->addStrategy("behind");
+
+        addAura("dire bear form");
+        addAura("thorns");
+        addTargetAura("faerie fire (feral)");
+
+        set<float>("distance", "current target", ATTACK_DISTANCE - 1);
+        set<bool>("behind", "current target", false);
+        tick();
+        set<bool>("behind", "current target", true);
+
+        assertActions(">S:set behind");
+    }
 
     void drop_target()
     {
