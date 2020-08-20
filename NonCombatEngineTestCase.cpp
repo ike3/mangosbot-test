@@ -12,6 +12,7 @@ class NonCombatEngineTestCase : public EngineTestBase
       CPPUNIT_TEST( stay );
       CPPUNIT_TEST( eatDrink );
       CPPUNIT_TEST( dpsAssist );
+      CPPUNIT_TEST( dpsAoe );
       CPPUNIT_TEST( doNotGrindIfLowMpHp );
       CPPUNIT_TEST( grindIfNoMana );
       CPPUNIT_TEST( loot );
@@ -59,6 +60,18 @@ protected:
 		tick();
 
 		assertActions(">Dps:dps assist>S:stay");
+    }
+
+    void dpsAoe()
+    {
+        engine->addStrategy("stay");
+        engine->addStrategy("dps aoe");
+
+		tickWithNoTarget();
+        set<Unit*>("current target", MockedTargets::GetTargetForDps());
+		tick();
+
+		assertActions(">Dps:dps aoe>S:stay");
     }
 
 	void pvp()
