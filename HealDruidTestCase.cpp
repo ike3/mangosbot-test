@@ -49,7 +49,7 @@ protected:
         tickWithLowHealth(1);
         tickWithLowHealth(1);
 
-        assertActions(">S:tree of life>S:rejuvenation>S:regrowth>S:regrowth>S:regrowth>S:healing touch");
+        assertActions(">S:tree of life>S:rejuvenation>S:regrowth>S:healing touch>S:regrowth>S:healing touch");
     }
 
 	void healOthers()
@@ -72,7 +72,7 @@ protected:
         tickWithPartyLowHealth(1);
         tickWithPartyLowHealth(1);
 
-        assertActions(">P:rejuvenation on party>P:regrowth on party>P:regrowth on party>P:regrowth on party>P:healing touch on party");
+        assertActions(">P:rejuvenation on party>P:regrowth on party>P:healing touch on party>P:regrowth on party>P:healing touch on party");
     }
 
     void aoe()
