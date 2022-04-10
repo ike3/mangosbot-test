@@ -75,7 +75,7 @@ protected:
         tickWithAoeCount(3);
         tickWithAoeCount(3);
 
-        assertActions(">S:searing totem>S:strength of earth totem>S:magma totem>T:fire nova");
+        assertActions(">S:searing totem>S:stoneskin totem>S:magma totem>T:fire nova");
     }
 
     void boost()

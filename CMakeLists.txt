@@ -65,6 +65,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/game/Skills
     ${CMAKE_SOURCE_DIR}/src/game/Social
     ${CMAKE_SOURCE_DIR}/src/game/Spells
+    ${CMAKE_SOURCE_DIR}/src/game/Time
     ${CMAKE_SOURCE_DIR}/src/game/Tools
     ${CMAKE_SOURCE_DIR}/src/game/Trade
     ${CMAKE_SOURCE_DIR}/src/game/VoiceChat
