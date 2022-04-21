@@ -35,8 +35,9 @@ protected:
         tick();
 
         tickWithTrigger("often");
+        tickWithTrigger("seldom");
 
-        assertActions(">S:emote>S:suggest what to do>S:suggest trade>S:talk");
+        assertActions(">S:emote>S:suggest what to do>S:suggest trade>S:check inventory>S:talk");
     }
 
     void suggest()
