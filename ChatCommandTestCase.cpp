@@ -21,6 +21,7 @@ class ChatCommandTestCase : public MockedAiObjectContextTestCase
       CPPUNIT_TEST( share );
       CPPUNIT_TEST( query );
       CPPUNIT_TEST( ll );
+      CPPUNIT_TEST( vl );
       CPPUNIT_TEST( ss );
       CPPUNIT_TEST( loot_all );
       CPPUNIT_TEST( release );
@@ -155,6 +156,15 @@ protected:
     }
 
     void ll()
+    {
+        assertCommand("ll");
+        assertParametrizedCommand("ll", "?");
+        assertParametrizedCommand("ll", "[item]");
+        assertParametrizedCommand("ll", "-[item]");
+        assertParametrizedCommand("ll", "all");
+    }
+
+    void vl()
     {
         assertCommand("ll");
         assertParametrizedCommand("ll", "?");
