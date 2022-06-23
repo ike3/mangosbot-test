@@ -29,6 +29,7 @@ class ChatCommandTestCase : public MockedAiObjectContextTestCase
       CPPUNIT_TEST( taxi );
       CPPUNIT_TEST( repair );
       CPPUNIT_TEST( use );
+      CPPUNIT_TEST( open );
       CPPUNIT_TEST( item_count );
       CPPUNIT_TEST( reward );
       CPPUNIT_TEST( trade );
@@ -208,6 +209,14 @@ protected:
         tick();
 
         assertActions(">S:use");
+    }
+
+    void open()
+    {
+        trigger("o");
+        tick();
+
+        assertActions(">S:open");
     }
 
     void item_count()

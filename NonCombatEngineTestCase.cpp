@@ -25,6 +25,7 @@ class NonCombatEngineTestCase : public EngineTestBase
       CPPUNIT_TEST( tell_target );
       CPPUNIT_TEST( pvp );
       CPPUNIT_TEST( collision );
+      CPPUNIT_TEST( patrol );
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -244,6 +245,15 @@ protected:
         tickWithCollision();
 
         assertActions(">S:move out of collision");
+    }
+
+    void patrol()
+    {
+        engine->addStrategy("patrol");
+
+        tick();
+
+        assertActions(">S:patrol");
     }
 };
 
