@@ -21,11 +21,11 @@ public:
 
 		engine->addStrategy("racials");
         set<float>("distance", "current target", 0.0f);
-		
+
 		addAura("battle shout");
 		addAura("defensive stance");
     }
- 
+
 protected:
     void healing()
     {
@@ -33,8 +33,9 @@ protected:
 		tickWithLowHealth(39);
 
         tickWithLowMana(39);
+        tickWithLowMana(39);
 
-        assertActions(">S:lifeblood>S:gift of the naaru>S:arcane torrent");
+        assertActions(">S:lifeblood>S:gift of the naaru>T:mana tap>S:arcane torrent");
     }
 };
 
