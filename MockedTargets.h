@@ -14,6 +14,7 @@ namespace ai
 		static Player* GetMaster() { return (Player*)2; }
         static Player* GetTargetForDps() { return (Player*)3; }
         static Player* GetTargetForTank() { return (Player*)4; }
+        static Player* GetTargetForDefense() { return (Player*)5; }
         static Player* GetCc() { return (Player*)12; }
 		static Player* GetLineTarget() { return (Player*)14; }
 		static Unit* GetLeastHpPartyMember() { return (Unit*)16; }
@@ -40,6 +41,8 @@ namespace ai
                 buffer.append("M");
             if (unit == GetTargetForDps())
                 buffer.append("Dps");
+            if (unit == GetTargetForDefense())
+                buffer.append("Defense");
             if (unit == GetTargetForTank())
                 buffer.append("Tank");
             if (unit == GetCc())

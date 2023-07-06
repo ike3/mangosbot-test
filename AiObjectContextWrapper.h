@@ -145,6 +145,7 @@ namespace ai
             creators["line target"] = &MockValueContext::mock;
             creators["tank target"] = &MockValueContext::mock;
             creators["dps target"] = &MockValueContext::mock;
+            creators["defense target"] = &MockValueContext::mock;
             creators["dps aoe target"] = &MockValueContext::mock;
             creators["cc target"] = &MockValueContext::mock;
             creators["current cc target"] = &MockValueContext::mock;
@@ -250,6 +251,7 @@ namespace ai
               GetValue<Unit*>("line target")->Set(MockedTargets::GetLineTarget());
               GetValue<Unit*>("tank target")->Set(MockedTargets::GetTargetForTank());
               GetValue<Unit*>("dps target")->Set(MockedTargets::GetTargetForDps());
+              GetValue<Unit*>("defense target")->Set(MockedTargets::GetTargetForDefense());
               GetValue<Unit*>("dps aoe target")->Set(MockedTargets::GetTargetForDps());
               GetValue<Unit*>("current cc target")->Set(NULL);
               GetValue<Unit*>("current target")->Set(MockedTargets::GetCurrentTarget());
