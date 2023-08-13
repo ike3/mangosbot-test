@@ -35,7 +35,7 @@ protected:
         tick();
 
         tickWithTrigger("often");
-        tickWithTrigger("seldom");
+        tickWithTrigger("often");
 
         assertActions(">S:emote>S:suggest what to do>S:suggest trade>S:check inventory>S:talk");
     }

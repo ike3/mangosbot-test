@@ -29,8 +29,8 @@ protected:
         engine.addStrategy("nc");
         engine.Init();
 
-        engine.DoNextAction(NULL);
-        engine.DoNextAction(NULL);
+        engine.DoNextAction(NULL, 100);
+        engine.DoNextAction(NULL, 100);
 
         std::cout << ai->buffer;
 		CPPUNIT_ASSERT(ai->buffer == ">S:defensive stance");

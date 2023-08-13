@@ -250,15 +250,15 @@ protected:
         engine.Init();
 
 		for (int i=0; i<6; i++)
-			engine.DoNextAction(NULL);
+			engine.DoNextAction(NULL, 100);
 
 		CPPUNIT_ASSERT(TriggeredAction::fired);
         CPPUNIT_ASSERT(TestMultiplier::asked);
         CPPUNIT_ASSERT_EQUAL(5, RepeatingAction::executed);
 
         RepeatingAction::available = FALSE;
-        engine.DoNextAction(NULL);
-        engine.DoNextAction(NULL);
+        engine.DoNextAction(NULL, 100);
+        engine.DoNextAction(NULL, 100);
         CPPUNIT_ASSERT(AlternativeAction::executed);
         CPPUNIT_ASSERT(PrerequisiteAction::executed);
 	}
@@ -275,7 +275,7 @@ protected:
         engine.addStrategy("TestStrategy");
         engine.Init();
 
-        engine.DoNextAction(NULL);
+        engine.DoNextAction(NULL, 100);
         CPPUNIT_ASSERT(TriggeredAction::fired);
     }
 
@@ -301,7 +301,7 @@ protected:
         engine.Init();
 
         for (int i=0; i<6; i++)
-            engine.DoNextAction(NULL);
+            engine.DoNextAction(NULL, 100);
 
         CPPUNIT_ASSERT(TriggeredAction::param == "test");
     }

@@ -123,7 +123,7 @@ void EngineTestBase::setupEngineCallback(const char* name)
 
 void EngineTestBase::tick()
 {
-	engine->DoNextAction(NULL);
+	engine->DoNextAction(NULL, 100);
 }
 
 void EngineTestBase::ticks(int count)
