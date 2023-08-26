@@ -75,7 +75,7 @@ protected:
     {
         tickWithSnareTargetSpell("frost shock");
 
-        assertActions(">Sn:frost shock on snare target");
+        assertActions(">T:frost shock");
     }
 };
 

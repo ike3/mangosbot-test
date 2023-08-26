@@ -17,6 +17,10 @@ class MeleeShamanTestCase : public EngineTestBase
     CPPUNIT_TEST( interruptSpell );
     CPPUNIT_TEST( interrupt_enemy_healer );
     CPPUNIT_TEST( stress );
+    CPPUNIT_TEST( earth );
+    CPPUNIT_TEST( fire );
+    CPPUNIT_TEST( frost );
+    CPPUNIT_TEST( air );
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -34,14 +38,11 @@ protected:
 		tickInMeleeRange();
 
         tick();
-        tick();
-        addTargetAura("earth shock");
 
         tick();
 		tick();
-		tick();
 
-        assertActions(">S:searing totem>T:earth shock>T:flame shock>T:stormstrike>T:lava lash>T:melee");
+        assertActions(">S:searing totem>T:stormstrike>T:lava lash>T:melee");
     }
 
     void buff()
@@ -53,10 +54,47 @@ protected:
         tick();
         addAura("lightning shield");
 
-        tickWithItemForSpell("windfury weapon");
+        assertActions(">S:lightning shield>S:searing totem");
+    }
+
+    void earth()
+    {
+        engine->addStrategy("earth");
+        tickInMeleeRange();
+        tick();
+        tickWithItemForSpell("rockbiter weapon");
+
+        assertActions(">S:searing totem>T:earth shock>S:rockbiter weapon");
+    }
+
+    void fire()
+    {
+        engine->addStrategy("fire");
+        tickInMeleeRange();
+        tick();
+        tickWithItemForSpell("flametongue weapon");
+
+        assertActions(">S:searing totem>T:flame shock>S:flametongue weapon");
+    }
+
+    void frost()
+    {
+        engine->addStrategy("frost");
+        tickInMeleeRange();
+        tick();
+        tickWithItemForSpell("frostbrand weapon");
+
+        assertActions(">S:searing totem>T:frost shock>S:frostbrand weapon");
+    }
+
+    void air()
+    {
+        engine->addStrategy("air");
+        tickInMeleeRange();
+        tick();
         tickWithItemForSpell("windfury weapon");
 
-        assertActions(">S:lightning shield>S:searing totem>S:windfury weapon>S:rockbiter weapon");
+        assertActions(">S:searing totem>T:flame shock>S:windfury weapon");
     }
 
     void incompatibles()
