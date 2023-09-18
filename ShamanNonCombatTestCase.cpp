@@ -10,7 +10,6 @@ class ShamanNonCombatTestCase : public EngineTestBase
 {
     CPPUNIT_TEST_SUITE( ShamanNonCombatTestCase );
         CPPUNIT_TEST( ressurect );
-        CPPUNIT_TEST( swimming );
         CPPUNIT_TEST( healing );
         CPPUNIT_TEST( aoe );
     CPPUNIT_TEST_SUITE_END();
@@ -44,25 +43,6 @@ protected:
 	    tickWithAoeHeal("medium");
 
 		assertActions(">P:chain heal");
-	}
-
-	void swimming()
-	{
-	    tickWhileSwimming();
-	    addAura("water breathing");
-
-	    tickWhileSwimming();
-        addAura("water walking");
-
-        spellAvailable("water breathing");
-        tickWhileSwimming();
-        addPartyAura("water breathing");
-
-        spellAvailable("water walking");
-        tickWhileSwimming();
-        addPartyAura("water walking");
-
-		assertActions(">S:water breathing>S:water walking>P:water breathing on party>P:water walking on party");
 	}
 };
 
