@@ -29,6 +29,7 @@ protected:
         spellInfo["fire blast"] = SpellInfo(72, 0, 8, 64);
         spellInfo["fireball"] = SpellInfo(54, 3, 0, 100);
         spellInfo["flamestrike"] = SpellInfo(120, 2, 0, 60);
+        spellInfo["shoot"] = SpellInfo(0, 0, 1, 15);
         return spellInfo;
     }
 

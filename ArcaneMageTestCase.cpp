@@ -30,11 +30,11 @@ protected:
         tick();
 
         addAura("missile barrage");
-        tick();
+        tickWithNoAggro();
         tickWithSpellAvailable("arcane missiles");
-        tick();
+        tickWithNoAggro();
 
-        assertActions(">T:arcane blast>T:arcane barrage>T:arcane missiles>T:arcane missiles>T:shoot");
+        assertActions(">T:arcane blast>T:arcane barrage>T:arcane missiles>T:shoot>T:arcane missiles");
 	}
 
  	void avoid_melee()
