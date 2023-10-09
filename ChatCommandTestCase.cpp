@@ -40,6 +40,7 @@ class ChatCommandTestCase : public MockedAiObjectContextTestCase
       CPPUNIT_TEST( talents );
       CPPUNIT_TEST( spells );
       CPPUNIT_TEST( strategy );
+      CPPUNIT_TEST( strategy_full );
       CPPUNIT_TEST( trainer );
       CPPUNIT_TEST( attack );
       CPPUNIT_TEST( chat );
@@ -135,6 +136,11 @@ protected:
         assertParametrizedCommand("los", "gos");
         assertParametrizedCommand("los", "game objects");
         assertParametrizedCommand("los", "corpses");
+
+        trigger("line of sight");
+        tick();
+
+        assertActions(">S:los(corpses)>S:los");
     }
 
     void drop()
@@ -153,7 +159,11 @@ protected:
         tick();
         tick();
 
-        assertActions(">S:query quest>S:query item usage");
+        trigger("query");
+        tick();
+        tick();
+
+        assertActions(">S:query quest>S:query item usage>S:query quest>S:query item usage");
     }
 
     void ll()
@@ -163,15 +173,25 @@ protected:
         assertParametrizedCommand("ll", "[item]");
         assertParametrizedCommand("ll", "-[item]");
         assertParametrizedCommand("ll", "all");
+
+        trigger("loot list");
+        tick();
+
+        assertActions(">S:ll(all)>S:ll");
     }
 
     void vl()
     {
-        assertCommand("ll");
-        assertParametrizedCommand("ll", "?");
-        assertParametrizedCommand("ll", "[item]");
-        assertParametrizedCommand("ll", "-[item]");
-        assertParametrizedCommand("ll", "all");
+        assertCommand("vl");
+        assertParametrizedCommand("vl", "?");
+        assertParametrizedCommand("vl", "[item]");
+        assertParametrizedCommand("vl", "-[item]");
+        assertParametrizedCommand("vl", "all");
+
+        trigger("vendor list");
+        tick();
+
+        assertActions(">S:vl(all)>S:vl");
     }
 
     void loot_all()
@@ -209,6 +229,7 @@ protected:
         tick();
 
         assertActions(">S:use");
+        assertCommand("use");
     }
 
     void open()
@@ -217,14 +238,17 @@ protected:
         tick();
 
         assertActions(">S:open");
+        assertCommand("open");
     }
 
     void item_count()
     {
         trigger("c");
         tick();
+        trigger("count");
+        tick();
 
-        assertActions(">S:item count");
+        assertActions(">S:item count>S:item count");
     }
 
     void reward()
@@ -240,15 +264,21 @@ protected:
         tick();
         trigger("nt");
         tick();
+        trigger("trade");
+        tick();
+        trigger("non trade");
+        tick();
 
-        assertActions(">S:trade>S:trade");
+        assertActions(">S:trade>S:trade>S:trade>S:trade");
     }
+
     void sell()
     {
         trigger("s");
         tick();
 
         assertActions(">S:sell");
+        assertCommand("sell");
     }
     void buy()
     {
@@ -256,6 +286,7 @@ protected:
         tick();
 
         assertActions(">S:buy");
+        assertCommand("buy");
     }
     void equip()
     {
@@ -263,6 +294,7 @@ protected:
         tick();
 
         assertActions(">S:equip");
+        assertCommand("equip");
     }
     void unequip()
     {
@@ -270,6 +302,7 @@ protected:
         tick();
 
         assertActions(">S:unequip");
+        assertCommand("unequip");
     }
 
     void talents()
@@ -288,6 +321,18 @@ protected:
         assertParametrizedCommand("co", "?");
         assertParametrizedCommand("nc", "?");
         assertParametrizedCommand("ds", "?");
+    }
+
+    void strategy_full()
+    {
+        trigger("combat");
+        tick();
+        trigger("non combat");
+        tick();
+        trigger("dead");
+        tick();
+
+        assertActions(">S:co>S:nc>S:ds");
     }
 
     void trainer()
@@ -516,6 +561,11 @@ protected:
         assertParametrizedCommand("ss", "[spell]");
         assertParametrizedCommand("ss", "-[spell]");
         assertParametrizedCommand("ss", "all");
+
+        trigger("skip spell");
+        tick();
+
+        assertActions(">S:ss(all)>S:ss");
     }
 
     void go()
@@ -542,7 +592,12 @@ protected:
 
     void cs()
     {
-        assertParametrizedCommand("cs", "cs");
+        trigger("cs");
+        tick();
+        trigger("custom");
+        tick();
+
+        assertActions(">S:cs>S:cs");
     }
 
     void wts()
@@ -572,12 +627,22 @@ protected:
 
     void ra()
     {
-        assertParametrizedCommand("ra", "ra");
+        trigger("ra");
+        tick();
+        trigger("remove aura");
+        tick();
+
+        assertActions(">S:ra>S:ra");
     }
 
     void ah()
     {
-        assertParametrizedCommand("ah", "ah");
+        trigger("ah");
+        tick();
+        trigger("auction");
+        tick();
+
+        assertActions(">S:ah>S:ah");
     }
 };
 
