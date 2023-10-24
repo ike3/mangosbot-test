@@ -303,7 +303,7 @@ namespace ai
               GetValue<uint8>("aoe heal", "critical")->Set(0);
 
               GetValue<uint8>("threat")->Set(0);
-              GetValue<uint8>("bag space")->Set(0);
+              GetValue<uint8>("bag space")->Set(1);
               GetValue<uint8>("speed", "current target")->Set(80);
               list<ObjectGuid> players;
               players.push_back(ObjectGuid());

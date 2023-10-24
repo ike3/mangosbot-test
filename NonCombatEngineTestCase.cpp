@@ -117,9 +117,9 @@ protected:
         set<bool>("can loot", false);
         tick();
 
-        set<uint8>("bag space", 99);
-        tickWithLootAvailable();
         set<uint8>("bag space", 0);
+        tickWithLootAvailable();
+        set<uint8>("bag space", 1);
 
         assertActions(">S:loot>S:move to loot>S:open loot>S:stay>S:check mount state");
     }

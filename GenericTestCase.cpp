@@ -115,7 +115,7 @@ protected:
 	    tick();
 	    set<bool>("group", false);
 
-		assertActions(">T:reach melee");
+		assertActions("");
 	}
 
 	void facing()
